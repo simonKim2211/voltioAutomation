@@ -27,6 +27,7 @@ pipeline {
                     git branch: "${params.API_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
+                        cd Banking-Workspace-API-Automation
                         mvn clean test
                     '''
                 }
@@ -45,6 +46,7 @@ pipeline {
                     git branch: "${params.UI_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
+                        cd Banking-Workspace-API-Automation
                         mvn clean test
                     '''
                 }
