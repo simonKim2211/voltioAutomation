@@ -24,7 +24,7 @@ pipeline {
         stage('Run API Tests') {
             steps {
                 dir('api-tests') {
-                    git branch: "${params.API_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation/tree/apitest'
+                    git branch: "${params.API_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
                         mvn clean test
@@ -42,7 +42,7 @@ pipeline {
         stage('Run UI Tests') {
             steps {
                 dir('ui-tests') {
-                    git branch: "${params.UI_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation/tree/uitest'
+                    git branch: "${params.UI_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
                         mvn clean test
