@@ -23,10 +23,11 @@ pipeline {
 
         stage('Run API Tests') {
             steps {
-                dir('api-tests/Banking-Workspace-API-Automation') {
+                dir('api-tests') {
                     git branch: "${params.API_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
+                        cd Banking-Workspace-API-Automation
                         mvn -B -q clean test
                     '''
                 }
@@ -41,10 +42,11 @@ pipeline {
 
         stage('Run UI Tests') {
             steps {
-                dir('ui-tests/Banking-Workspace-API-Automation') {
+                dir('ui-tests') {
                     git branch: "${params.UI_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
+                        cd Banking-Workspace-API-Automation
                         mvn -B -q clean test
                     '''
                 }
