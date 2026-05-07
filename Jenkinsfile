@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'maven-selenium-agent'
+        label 'docker-agent-voltio'
     }
 
     parameters {
