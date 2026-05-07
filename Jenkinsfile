@@ -23,38 +23,36 @@ pipeline {
 
         stage('Run API Tests') {
             steps {
-                dir('api-tests') {
+                dir('api-tests/Banking-Workspace-API-Automation') {
                     git branch: "${params.API_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
-                        cd Banking-Workspace-API-Automation
                         mvn clean test
                     '''
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
-                    junit 'target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'ui-tests/Banking-Workspace-API-Automation/target/**', allowEmptyArchive: true
+                    junit 'ui-tests/Banking-Workspace-API-Automation/target/surefire-reports/*.xml'
                 }
             }
         }
 
         stage('Run UI Tests') {
             steps {
-                dir('ui-tests') {
+                dir('ui-tests/Banking-Workspace-API-Automation') {
                     git branch: "${params.UI_BRANCH}", url: 'https://github.com/simonKim2211/voltioAutomation.git'
 
                     sh '''
-                        cd Banking-Workspace-API-Automation
                         mvn clean test
                     '''
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
-                    junit 'target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'ui-tests/Banking-Workspace-API-Automation/target/**', allowEmptyArchive: true
+                    junit 'ui-tests/Banking-Workspace-API-Automation/target/surefire-reports/*.xml'
                 }
             }
         }
