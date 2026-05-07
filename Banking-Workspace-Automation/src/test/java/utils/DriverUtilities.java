@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -22,19 +23,24 @@ public class DriverUtilities {
     }
 
     private void initializeDriver() {
-
         String browser = ConfigReader.getBrowser();
-        switch(browser){
+
+        switch (browser) {
             case "chrome":
-                this.driver=new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+
+                options.addArguments("--headless=new");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--window-size=1920,1080");
+
+                this.driver = new ChromeDriver(options);
                 break;
 
             default:
-                System.out.println("The browser is not Chrome , Please use Chrome for running these tests");
-                break;
+                throw new RuntimeException("Unsupported browser: " + browser);
         }
-
-        driver.manage().window().maximize();
 
         driver.manage().timeouts().implicitlyWait(
                 Duration.ofSeconds(ConfigReader.getImplicitWait())
