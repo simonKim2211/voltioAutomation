@@ -34,8 +34,8 @@ pipeline {
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'api-tests/Banking-Workspace-API-Automation/target/**', allowEmptyArchive: true
-                    junit 'api-tests/Banking-Workspace-API-Automation/target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'api-tests/Banking-Workspace-Automation/target/**', allowEmptyArchive: true
+                    junit 'api-tests/Banking-Workspace-Automation/target/surefire-reports/*.xml'
                 }
             }
         }
